@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<form method="POST">
+    <label for="text-input">Text Input:</label>
+    <input type="text" name="text-input" autocomplete="off">
+    <label for="numeric-input">Numeric Input:</label>
+    <input type="number" name="numeric-input" autocomplete="off">
+    <button type="submit">Submit</button>
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $textInput = new TextInput();
+    $numericInput = new NumericInput();
+
+    $text = $_POST['text-input'] ?? '';
+    $numeric = $_POST['numeric-input'] ?? '';
+
+    $textInput->add($text);
+    $numericInput->add($numeric);
+
+    echo 'Text Input: ' . $textInput->getValue() . '<br>';
+    echo 'Numeric Input: ' . $numericInput->getValue() . '<br>';
+}
+?>
+</body>
+</html>
